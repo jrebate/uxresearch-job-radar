@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radar UX Research</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: cabecera con estado de la búsqueda, resumen (IA y sueldos) y lista filtrable de ofertas */
+:root{
+  --bg:#f5f6f8; --surface:#ffffff; --ink:#18202b; --muted:#5b6676; --line:#dde1e7;
+  --accent:#1f5aa6; --accent-soft:#e3ecf8;
+  --ia-ninguna:#8a94a3; --ia-objeto:#b7791f; --ia-flujo:#1b8a7a; --ia-ambos:#1f5aa6;
+  --new:#c2410c;
+  --f-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#11161d; --surface:#18202a; --ink:#e6eaf0; --muted:#9aa5b4; --line:#2a3441;
+  --accent:#7fb0ef; --accent-soft:#1d2d44;
+  --ia-ninguna:#7d8796; --ia-objeto:#e0a64a; --ia-flujo:#4cc3b0; --ia-ambos:#7fb0ef; --new:#f08a4b;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#11161d; --surface:#18202a; --ink:#e6eaf0; --muted:#9aa5b4; --line:#2a3441;
+  --accent:#7fb0ef; --accent-soft:#1d2d44;
+  --ia-ninguna:#7d8796; --ia-objeto:#e0a64a; --ia-flujo:#4cc3b0; --ia-ambos:#7fb0ef; --new:#f08a4b;
+  color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5}
+.wrap{max-width:1080px;margin:0 auto;padding-block:28px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:28px}
+header{display:grid;gap:6px}
+h1{font-family:var(--f-display);font-size:clamp(28px,5vw,40px);line-height:1.1;margin:0;text-wrap:balance;letter-spacing:-0.01em}
+.sub{color:var(--muted);margin:0;max-width:65ch}
+.status{display:flex;flex-wrap:wrap;gap:8px 16px;font-family:var(--f-mono);font-size:12.5px;color:var(--muted);margin-top:6px}
+.status b{color:var(--ink);font-weight:500}
+h2{font-family:var(--f-display);font-size:20px;margin:0 0 12px}
+.label{font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
+.summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:20px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;min-width:0}
+.big{font-family:var(--f-display);font-size:34px;line-height:1;font-variant-numeric:tabular-nums}
+.kpis{display:flex;flex-wrap:wrap;gap:24px;margin-bottom:16px}
+.kpi{display:grid;gap:4px}
+.bar{display:flex;height:14px;border-radius:7px;overflow:hidden;background:var(--line)}
+.bar span{display:block;height:100%}
+.legend{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 16px;margin-top:12px;font-size:13.5px}
+.legend div{display:flex;align-items:center;gap:8px}
+.dot{width:10px;height:10px;border-radius:50%;flex:none}
+.legend .n{margin-left:auto;font-family:var(--f-mono);font-variant-numeric:tabular-nums;color:var(--muted)}
+.tablewrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+td.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.note{font-size:12.5px;color:var(--muted);margin:10px 0 0}
+.filters{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.filters input,.filters select{font:inherit;font-size:14px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);min-width:0}
+.filters input{flex:1 1 220px}
+.chip{font:inherit;font-size:13px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.chip[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--ink)}
+.chip:focus-visible,.filters input:focus-visible,.filters select:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.count{font-size:13px;color:var(--muted);margin:12px 0 0}
+.list{display:grid;gap:12px;margin-top:12px}
+.job{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--c,var(--line));border-radius:8px;padding:14px 16px;display:grid;gap:8px;min-width:0}
+.job-top{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline}
+.job h3{font-size:16px;margin:0;font-weight:600;min-width:0}
+.job h3 a{color:inherit;text-decoration:none}
+.job h3 a:hover{text-decoration:underline}
+.co{color:var(--muted);font-weight:500}
+.meta{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px;color:var(--muted)}
+.meta .sal{font-family:var(--f-mono);color:var(--ink)}
+.pill{font-size:12px;font-weight:600;padding:2px 9px;border-radius:999px;background:color-mix(in srgb,var(--c) 16%,transparent);color:var(--ink);border:1px solid color-mix(in srgb,var(--c) 45%,transparent);white-space:nowrap}
+.new{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--new)}
+.quote{font-size:13.5px;margin:0;padding-left:10px;border-left:2px solid var(--line);color:var(--ink)}
+.obs{font-size:13.5px;margin:0;color:var(--muted)}
+.periodbar{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.dates{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:13px;color:var(--muted)}
+.dates input{font:inherit;font-size:14px;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+.dates input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.periodtxt{font-size:13px;color:var(--muted);margin-left:auto}
+.evo-panel{padding:0}
+.evo-panel>summary{list-style:none;cursor:pointer;display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline;padding:14px 18px}
+.evo-panel>summary::-webkit-details-marker{display:none}
+.evo-panel>summary::before{content:"▸";color:var(--muted);transition:transform .15s}
+.evo-panel[open]>summary::before{transform:rotate(90deg)}
+.evo-panel>summary h2{margin:0;font-size:18px}
+.evo-panel>summary:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;border-radius:10px}
+.evo-hint{font-size:13px;color:var(--muted)}
+.evo-panel[open]{padding:0 18px 18px}
+.evo-panel[open]>summary{padding:14px 0 0}
+.closed{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);border-radius:4px;padding:0 5px}
+.evo td.num,.evo th.num{text-align:right}
+.evo tr.tot td{font-weight:600;border-top:2px solid var(--line);border-bottom:none}
+.delta{font-size:11.5px;margin-left:6px;color:var(--muted)}
+.minibar{display:inline-block;height:8px;border-radius:4px;background:var(--accent);vertical-align:middle;margin-left:8px;opacity:.55}
+.empty{padding:28px;text-align:center;color:var(--muted);background:var(--surface);border:1px dashed var(--line);border-radius:10px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="label">CentaurUX · Investigación de mercado</span>
+    <h1>Radar UX Research</h1>
+    <p class="sub">Ofertas recientes de UX Research en empresas reconocidas, clasificadas según qué piden y cómo aparece la IA: como objeto de investigación o como forma de investigar.</p>
+    <div class="status" id="status"><span>Conectando con la base de datos…</span></div>
+  </header>
+
+  <div class="periodbar" role="group" aria-label="Periodo">
+    <div class="seg" id="presets"></div>
+    <div class="dates">
+      <label>Desde <input type="date" id="from"></label>
+      <label>Hasta <input type="date" id="to"></label>
+    </div>
+    <span class="periodtxt" id="periodtxt"></span>
+  </div>
+
+  <details class="panel evo-panel" id="evopanel">
+    <summary><h2>Evolución</h2><span class="evo-hint">Mes a mes, por año y total</span></summary>
+    <div class="seg" id="evomode" style="margin-top:12px"></div>
+    <div class="tablewrap" style="margin-top:12px"><table class="evo">
+      <thead id="evohead"></thead>
+      <tbody id="evobody"></tbody>
+    </table></div>
+    <p class="note">Cada oferta cuenta en el mes de su fecha de publicación; si no se conoce, en el de la fecha en que entró en el radar. Esta tabla muestra todo el histórico y no depende del periodo elegido arriba.</p>
+  </details>
+
+  <section class="summary" aria-label="Resumen">
+    <div class="panel">
+      <h2>La IA en las ofertas</h2>
+      <div class="kpis">
+        <div class="kpi"><span class="label">Ofertas en el periodo</span><span class="big" id="k-total">—</span></div>
+        <div class="kpi"><span class="label">Piden investigar con IA</span><span class="big" id="k-flujo">—</span></div>
+        <div class="kpi"><span class="label">Nuevas en la última búsqueda</span><span class="big" id="k-new">—</span></div>
+      </div>
+      <div class="bar" id="iabar" role="img" aria-label="Reparto de ofertas por presencia de la IA"></div>
+      <div class="legend" id="legend"></div>
+    </div>
+    <div class="panel">
+      <h2>Sueldo base por región</h2>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Región</th><th>Ofertas</th><th>Punto medio</th></tr></thead>
+        <tbody id="salaries"><tr><td colspan="3">Sin datos todavía.</td></tr></tbody>
+      </table></div>
+      <p class="note">Media de los puntos medios de los rangos que publica la propia empresa, en sueldo anual base. Cada región en su moneda: no comparar sin tener en cuenta el coste de vida. Excluye puestos de dirección y consultoras.</p>
+    </div>
+  </section>
+
+  <section aria-label="Ofertas">
+    <h2>Ofertas</h2>
+    <div class="filters">
+      <input id="q" type="search" placeholder="Buscar empresa, puesto o cita" aria-label="Buscar">
+      <select id="region" aria-label="Región"><option value="">Todas las regiones</option></select>
+    </div>
+    <div class="filters" id="iafilters" style="margin-top:10px"></div>
+    <p class="count" id="count"></p>
+    <div class="list" id="list"><div class="empty">Las ofertas aparecerán aquí en cuanto cargue la base de datos. Las añade una búsqueda programada dos veces por semana.</div></div>
+  </section>
+</div>
+
+<script>
+const IA = {
+  ninguna:{label:"No aparece", c:"var(--ia-ninguna)"},
+  objeto:{label:"Investigación sobre IA", c:"var(--ia-objeto)"},
+  flujo:{label:"IA como herramienta", c:"var(--ia-flujo)"},
+  ambos:{label:"Las dos cosas", c:"var(--ia-ambos)"}
+};
+const USO = {requisito:"requisito", deseable:"deseable", responsabilidad:"responsabilidad del rol"};
+const CUR = {USD:"$", EUR:"€", GBP:"£", CAD:"CAD", MXN:"MXN", AUD:"AUD", PLN:"PLN", DKK:"DKK"};
+let rows = [], meta = {}, filt = {q:"", region:"", ia:new Set(), from:"", to:"", preset:"todo"}, evoMode = "mes";
+
+const $ = id => document.getElementById(id);
+const fmt = n => Math.round(n).toLocaleString("es-ES");
+const money = (n, cur) => cur === "USD" || cur === "GBP" || cur === "EUR" ? fmt(n) + " " + CUR[cur] : fmt(n) + " " + (CUR[cur] || cur || "");
+const isNew = r => !r.historica && meta.ultima_busqueda && r.anadida && r.anadida >= meta.ultima_busqueda;
+const refDate = r => r.fecha || r.anadida || "";
+const iso = d => d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
+const inPeriod = r => { const d = refDate(r); if (!filt.from && !filt.to) return true; if (!d) return false; return (!filt.from || d >= filt.from) && (!filt.to || d <= filt.to); };
+const MES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+const fmtDay = d => new Date(d + "T12:00:00").toLocaleDateString("es-ES",{day:"numeric",month:"short",year:"numeric"});
+const PRESETS = [["semana","Última semana"],["mes","Último mes"],["anio","Este año"],["todo","Todo"]];
+const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+
+function renderStatus(){
+  const s = $("status"); s.replaceChildren();
+  const add = (k, v) => { const sp = el("span"); sp.append(k + " "); sp.append(el("b", null, v)); s.append(sp); };
+  add("Última búsqueda:", meta.ultima_busqueda ? new Date(meta.ultima_busqueda + "T12:00:00").toLocaleDateString("es-ES",{day:"numeric",month:"long",year:"numeric"}) : "pendiente");
+  add("Próxima:", meta.proxima || "lunes y jueves");
+  if (meta.nota) s.append(el("span", null, meta.nota));
+}
+
+function renderSummary(){
+  const pr = rows.filter(inPeriod);
+  const total = pr.length;
+  const counts = {ninguna:0, objeto:0, flujo:0, ambos:0};
+  pr.forEach(r => { if (counts[r.ia] != null) counts[r.ia]++; });
+  const workflow = counts.flujo + counts.ambos;
+  $("k-total").textContent = total;
+  $("k-flujo").textContent = total ? workflow + " de " + total : "—";
+  $("k-new").textContent = rows.filter(isNew).length;
+  const bar = $("iabar"); bar.replaceChildren();
+  const leg = $("legend"); leg.replaceChildren();
+  for (const k of ["flujo","ambos","objeto","ninguna"]) {
+    if (total && counts[k]) { const sp = el("span"); sp.style.width = (counts[k] / total * 100) + "%"; sp.style.background = IA[k].c; sp.title = IA[k].label + ": " + counts[k]; bar.append(sp); }
+    const d = el("div"); const dot = el("span","dot"); dot.style.background = IA[k].c;
+    d.append(dot, el("span", null, IA[k].label), el("span","n", counts[k])); leg.append(d);
+  }
+  // salaries
+  const groups = {};
+  pr.filter(r => r.salario_min && r.salario_max && !r.excluir_media).forEach(r => {
+    const key = r.region + "|" + r.moneda;
+    (groups[key] ||= {region:r.region, cur:r.moneda, mids:[]}).mids.push((r.salario_min + r.salario_max) / 2);
+  });
+  const tb = $("salaries"); tb.replaceChildren();
+  const g = Object.values(groups).sort((a,b) => b.mids.length - a.mids.length);
+  if (!g.length) { const tr = el("tr"); const td = el("td", null, "Sin datos todavía."); td.colSpan = 3; tr.append(td); tb.append(tr); }
+  g.forEach(x => {
+    const tr = el("tr");
+    tr.append(el("td", null, x.region), el("td","num", x.mids.length), el("td","num", money(x.mids.reduce((a,b)=>a+b,0) / x.mids.length, x.cur)));
+    tb.append(tr);
+  });
+  // region select
+  const sel = $("region"), cur = sel.value;
+  const regions = [...new Set(rows.map(r => r.region))].sort((a,b)=>a.localeCompare(b,"es"));
+  sel.replaceChildren(new Option("Todas las regiones",""), ...regions.map(r => new Option(r, r)));
+  sel.value = regions.includes(cur) ? cur : "";
+}
+
+function renderIaFilters(){
+  const box = $("iafilters"); box.replaceChildren();
+  for (const k of ["flujo","ambos","objeto","ninguna"]) {
+    const b = el("button","chip"); b.type = "button"; b.setAttribute("aria-pressed", filt.ia.has(k));
+    const dot = el("span","dot"); dot.style.background = IA[k].c; b.append(dot, IA[k].label);
+    b.onclick = () => { filt.ia.has(k) ? filt.ia.delete(k) : filt.ia.add(k); renderIaFilters(); renderList(); };
+    box.append(b);
+  }
+}
+
+function renderList(){
+  const q = filt.q.trim().toLowerCase();
+  const out = rows.filter(r =>
+    (!filt.region || r.region === filt.region) &&
+    (!filt.ia.size || filt.ia.has(r.ia)) &&
+    inPeriod(r) &&
+    (!q || [r.empresa, r.puesto, r.ciudad, r.cita_ia, r.nota, r.sector].join(" ").toLowerCase().includes(q))
+  ).sort((a,b) => (!!isNew(b) - !!isNew(a)) || refDate(b).localeCompare(refDate(a)) || (b.n||0)-(a.n||0));
+  $("count").textContent = out.length + (out.length === 1 ? " oferta" : " ofertas") + ", de la más reciente a la más antigua (las nuevas primero)";
+  const list = $("list"); list.replaceChildren();
+  if (!out.length) { list.append(el("div","empty", rows.length ? "Ninguna oferta coincide con estos filtros." : "Todavía no hay ofertas en la base de datos.")); return; }
+  out.forEach(r => {
+    const ia = IA[r.ia] || IA.ninguna;
+    const card = el("article","job"); card.style.setProperty("--c", ia.c);
+    const top = el("div","job-top");
+    const h = el("h3"); const a = el("a", null, r.puesto); a.href = r.url; a.target = "_blank"; a.rel = "noopener";
+    h.append(a, document.createTextNode(" "), el("span","co", "· " + r.empresa));
+    const pill = el("span","pill", ia.label + (r.ia_uso && USO[r.ia_uso] ? " · " + USO[r.ia_uso] : "")); pill.style.setProperty("--c", ia.c);
+    top.append(h, pill);
+    if (isNew(r)) top.append(el("span","new","Nueva"));
+    if (r.estado === "cerrada") top.append(el("span","closed","Cerrada"));
+    const m = el("div","meta");
+    m.append(el("span", null, r.region + (r.ciudad && r.ciudad !== r.region ? " · " + r.ciudad : "")));
+    m.append(el("span", null, "Publicada: " + (r.fecha_texto || r.fecha || "sin fecha")));
+    if (r.nivel) m.append(el("span", null, r.nivel));
+    m.append(el("span","sal", r.salario_min ? money(r.salario_min, r.moneda).replace(/ \S+$/,"") + "–" + money(r.salario_max, r.moneda) : "Sueldo no publicado"));
+    if (r.sector) m.append(el("span", null, r.sector));
+    card.append(top, m);
+    if (r.cita_ia) card.append(el("p","quote", "“" + r.cita_ia + "”"));
+    const obs = [r.nota, r.salario_nota].filter(Boolean).join(" ");
+    if (obs) card.append(el("p","obs", obs));
+    list.append(card);
+  });
+}
+
+function setPreset(p){
+  filt.preset = p; const now = new Date(); let from = "";
+  if (p === "semana") { const d = new Date(now); d.setDate(d.getDate() - 7); from = iso(d); }
+  if (p === "mes") { const d = new Date(now); d.setMonth(d.getMonth() - 1); from = iso(d); }
+  if (p === "anio") from = now.getFullYear() + "-01-01";
+  filt.from = from; filt.to = p === "todo" ? "" : iso(now);
+  $("from").value = filt.from; $("to").value = filt.to;
+  renderPeriod();
+}
+function renderPeriod(){
+  const box = $("presets"); box.replaceChildren();
+  PRESETS.forEach(([k, label]) => {
+    const b = el("button","chip", label); b.type = "button"; b.setAttribute("aria-pressed", filt.preset === k);
+    b.onclick = () => setPreset(k); box.append(b);
+  });
+  $("periodtxt").textContent = !filt.from && !filt.to ? "Todo el histórico" :
+    (filt.from ? fmtDay(filt.from) : "Desde el inicio") + " – " + (filt.to ? fmtDay(filt.to) : "hoy");
+  renderSummary(); renderList();
+}
+function renderEvo(){
+  const months = evoMode === "mes";
+  const groups = {};
+  rows.forEach(r => {
+    const d = refDate(r); const key = d ? (months ? d.slice(0,7) : d.slice(0,4)) : "sin fecha";
+    const g = groups[key] ||= {key, total:0, ninguna:0, objeto:0, flujo:0, ambos:0};
+    g.total++; if (g[r.ia] != null) g[r.ia]++;
+  });
+  const keys = Object.keys(groups).sort().reverse();
+  const max = Math.max(1, ...keys.map(k => groups[k].total));
+  const head = $("evohead"); head.replaceChildren();
+  const htr = el("tr");
+  htr.append(el("th", null, months ? "Mes" : "Año"), el("th","num","Ofertas"));
+  ["flujo","ambos","objeto","ninguna"].forEach(k => htr.append(el("th","num", IA[k].label)));
+  htr.append(el("th","num","Con IA en el flujo"));
+  head.append(htr);
+  const body = $("evobody"); body.replaceChildren();
+  const pct = g => g.total ? Math.round((g.flujo + g.ambos) / g.total * 100) + " %" : "—";
+  const row = (label, g, prev, cls) => {
+    const tr = el("tr", cls);
+    tr.append(el("td", null, label));
+    const tdT = el("td","num", g.total);
+    if (prev) { const dlt = g.total - prev.total; tdT.append(el("span","delta", (dlt > 0 ? "+" : "") + dlt)); }
+    if (!cls) { const mb = el("span","minibar"); mb.style.width = Math.max(4, g.total / max * 60) + "px"; tdT.append(mb); }
+    tr.append(tdT);
+    ["flujo","ambos","objeto","ninguna"].forEach(k => tr.append(el("td","num", g[k])));
+    tr.append(el("td","num", pct(g)));
+    body.append(tr);
+  };
+  if (!keys.length) { const tr = el("tr"); const td = el("td", null, "Sin datos todavía."); td.colSpan = 7; tr.append(td); body.append(tr); return; }
+  keys.forEach((k, i) => {
+    const label = k === "sin fecha" ? "Sin fecha" : months ? MES[+k.slice(5,7) - 1].replace(/^./, c => c.toUpperCase()) + " " + k.slice(0,4) : k;
+    const prev = keys[i+1] && keys[i+1] !== "sin fecha" && k !== "sin fecha" ? groups[keys[i+1]] : null;
+    row(label, groups[k], prev);
+  });
+  const tot = {total:0, ninguna:0, objeto:0, flujo:0, ambos:0};
+  keys.forEach(k => Object.keys(tot).forEach(f => tot[f] += groups[k][f]));
+  row("Total", tot, null, "tot");
+}
+function renderEvoMode(){
+  const box = $("evomode"); box.replaceChildren();
+  [["mes","Mes a mes"],["anio","Por año"]].forEach(([k, label]) => {
+    const b = el("button","chip", label); b.type = "button"; b.setAttribute("aria-pressed", evoMode === k);
+    b.onclick = () => { evoMode = k; renderEvoMode(); renderEvo(); }; box.append(b);
+  });
+}
+$("from").addEventListener("change", e => { filt.from = e.target.value; filt.preset = ""; renderPeriod(); });
+$("to").addEventListener("change", e => { filt.to = e.target.value; filt.preset = ""; renderPeriod(); });
+renderEvoMode();
+renderPeriod();
+
+$("q").addEventListener("input", e => { filt.q = e.target.value; renderList(); });
+$("region").addEventListener("change", e => { filt.region = e.target.value; renderList(); });
+renderIaFilters();
+
+(async () => {
+  if (!window.claude) {
+    try {
+      const d = await (await fetch("data/radar.json", {cache:"no-store"})).json();
+      meta = d.meta || {}; rows = (d.ofertas || []).filter(r => r.estado !== "descartada");
+      renderStatus(); renderSummary(); renderEvo(); renderList();
+    } catch (e) { $("status").replaceChildren(el("span", null, "No se han podido cargar los datos.")); }
+    return;
+  }
+  const db = await window.claude.use("db");
+  if (!db) { $("status").replaceChildren(el("span", null, "No se ha podido conectar con la base de datos. Abre la página con tu cuenta de claude.ai.")); return; }
+  db.doc("meta/estado").onSnapshot(s => { meta = s.exists ? s.data() : {}; renderStatus(); renderSummary(); renderList(); });
+  db.collection("ofertas").onSnapshot(s => { rows = s.docs.map(d => ({id:d.id, ...d.data()})).filter(r => r.estado !== "descartada"); renderSummary(); renderEvo(); renderList(); },
+    () => { $("status").replaceChildren(el("span", null, "No se han podido leer las ofertas.")); });
+})();
+</script>
+
+</body>
+</html>
