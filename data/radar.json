@@ -1,8 +1,8 @@
 {
  "meta": {
-  "nota": "133 ofertas: 30 actuales y 103 históricas desde septiembre de 2025.",
+  "nota": "Búsqueda extra del 18/10: 4 ofertas nuevas.",
   "proxima": "Lunes y jueves",
-  "ultima_busqueda": "2026-10-16"
+  "ultima_busqueda": "2026-10-18"
  },
  "ofertas": [
   {
@@ -178,6 +178,30 @@
    "sector": "Banca / fintech",
    "url": "https://www.themuse.com/jobs/capitalone/senior-manager-research-user-intelligence-card-platforms-data/",
    "id": "capital-one-research-user-intelligence-2026-08"
+  },
+  {
+   "anadida": "2026-10-18",
+   "cita_ia": "Working knowledge of modern design, research, and AI tools, such as Figma, Claude, and Maze",
+   "ciudad": "Florida",
+   "empresa": "Carrier",
+   "estado": "abierta",
+   "excluir_media": false,
+   "fecha": "2026-10-16",
+   "fecha_texto": "16/10/2026",
+   "ia": "flujo",
+   "ia_uso": "deseable",
+   "moneda": "USD",
+   "n": 135,
+   "nivel": "Mid-Senior, 5+ años",
+   "nota": "Design researcher en entornos operativos (cadena de frío, IoT, salud) que ayuda a hacer crecer la práctica de research de Carrier Digital; cita Claude como herramienta de research deseable.",
+   "puesto": "UX Researcher",
+   "region": "EE. UU.",
+   "salario_max": 158000,
+   "salario_min": 79000,
+   "salario_nota": "Rango publicado por la empresa; posibles incentivos a corto plazo.",
+   "sector": "Industria / IoT",
+   "url": "https://www.glassdoor.com/job-listing/ux-researcher-carrier-JV_KO0,13_KE14,21.htm?jl=1010298816362",
+   "id": "carrier-ux-researcher"
   },
   {
    "anadida": "2026-10-17",
@@ -1539,6 +1563,30 @@
    "id": "natwest-boxed-senior-2025-10"
   },
   {
+   "anadida": "2026-10-18",
+   "cita_ia": "",
+   "ciudad": "Londres (remoto)",
+   "empresa": "NEC Software Solutions (NEC Corporation)",
+   "estado": "abierta",
+   "excluir_media": false,
+   "fecha": "2026-10-17",
+   "fecha_texto": "~17/10/2026",
+   "ia": "ninguna",
+   "ia_uso": null,
+   "moneda": null,
+   "n": 137,
+   "nivel": "Mid, contrato de 3 meses",
+   "nota": "Contrato corto para proyecto GDS de alto impacto público y ámbito sanitario; confirma la demanda sostenida de researchers con experiencia en servicios públicos del Reino Unido.",
+   "puesto": "Mid Level User Researcher - 3 month contract",
+   "region": "Reino Unido",
+   "salario_max": null,
+   "salario_min": null,
+   "salario_nota": "",
+   "sector": "Software / sector público",
+   "url": "https://www.glassdoor.co.uk/job-listing/mid-level-user-researcher-3-month-contract-nec-corporation-JV_IC2671300_KO0,42_KE43,58.htm?jl=1010298104046",
+   "id": "nec-mid-user-researcher"
+  },
+  {
    "anadida": "2026-10-17",
    "cita_ia": "Hands-on experience trying out different ways that AI can improve research operations and/or analyses",
    "ciudad": "Madrid (híbrido)",
@@ -2183,6 +2231,30 @@
    "id": "samsung-staff-2026-04"
   },
   {
+   "anadida": "2026-10-18",
+   "cita_ia": "Define the evaluation strategy for AI-powered experiences",
+   "ciudad": "Mountain View (CA)",
+   "empresa": "ServiceNow (Moveworks)",
+   "estado": "abierta",
+   "excluir_media": false,
+   "fecha": "2026-10-16",
+   "fecha_texto": "16/10/2026",
+   "ia": "ambos",
+   "ia_uso": "requisito",
+   "moneda": "USD",
+   "n": 134,
+   "nivel": "Principal, 10+ años",
+   "nota": "Rol mixto que traslada necesidades de usuario a marcos de evaluación de IA (benchmarks, rúbricas, métricas de calidad y confianza) y pide además integrar la IA en el propio trabajo: research como garante de la calidad de sistemas de IA.",
+   "puesto": "Principal UX Researcher, Moveworks",
+   "region": "EE. UU.",
+   "salario_max": 387100,
+   "salario_min": 221200,
+   "salario_nota": "Base anual publicada por la empresa; además equity e incentivos variables.",
+   "sector": "Software empresarial / IA",
+   "url": "https://startup.jobs/principal-ux-researcher-moveworks-servicenow-10483167",
+   "id": "servicenow-principal-moveworks"
+  },
+  {
    "anadida": "2026-10-17",
    "cita_ia": "",
    "ciudad": "Remoto",
@@ -2804,6 +2876,30 @@
    "sector": "Sector público",
    "url": "https://www.glassdoor.co.uk/job-listing/user-researcher-uk-health-security-agency-JV_IC2671300_KO0,15_KE16,41.htm?jl=1010297850218",
    "id": "ukhsa-researcher"
+  },
+  {
+   "anadida": "2026-10-18",
+   "cita_ia": "",
+   "ciudad": "Atlanta (GA)",
+   "empresa": "UPS",
+   "estado": "abierta",
+   "excluir_media": false,
+   "fecha": "2026-10-16",
+   "fecha_texto": "~16/10/2026",
+   "ia": "ninguna",
+   "ia_uso": null,
+   "moneda": null,
+   "n": 136,
+   "nivel": "Mid, 2-3 años",
+   "nota": "Puesto presencial de métodos mixtos con posible gestión de proveedores externos de research; sin mención a IA. Fecha aproximada (Glassdoor, últimos 3 días; plazo interno hasta el 27/10).",
+   "puesto": "UX Researcher",
+   "region": "EE. UU.",
+   "salario_max": null,
+   "salario_min": null,
+   "salario_nota": "",
+   "sector": "Logística",
+   "url": "https://www.glassdoor.com/job-listing/ux-researcher-ups-JV_IC1155582_KO0,13_KE14,17.htm?jl=1010298263851",
+   "id": "ups-ux-researcher"
   },
   {
    "anadida": "2026-10-17",
