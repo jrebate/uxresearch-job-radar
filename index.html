@@ -98,16 +98,18 @@ td.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:n
 .delta{font-size:11.5px;margin-left:6px;color:var(--muted)}
 .minibar{display:inline-block;height:8px;border-radius:4px;background:var(--accent);vertical-align:middle;margin-left:8px;opacity:.55}
 .empty{padding:28px;text-align:center;color:var(--muted);background:var(--surface);border:1px dashed var(--line);border-radius:10px}
+.consent{position:fixed;left:16px;bottom:16px;z-index:10;max-width:min(360px,calc(100vw - 32px));background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13px;line-height:1.45;box-shadow:0 6px 24px rgba(0,0,0,.12);display:grid;gap:10px}
+.consent[hidden]{display:none}
+.consent p{margin:0;color:var(--muted)}
+.consent .row{display:flex;gap:8px;justify-content:flex-end}
+.consent button{font:inherit;font-size:13px;padding:5px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.consent button.ok{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.consent button:focus-visible,.foot button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.foot{font-size:12.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 14px}
+.foot button{font:inherit;color:inherit;background:none;border:0;padding:0;text-decoration:underline;cursor:pointer}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "z0adlc3261");
-</script>
 </head>
 <body>
 <div class="wrap">
@@ -169,6 +171,12 @@ td.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:n
     <p class="count" id="count"></p>
     <div class="list" id="list"><div class="empty">Las ofertas aparecerán aquí en cuanto cargue la base de datos. Las añade una búsqueda programada dos veces por semana.</div></div>
   </section>
+  <footer class="foot"><span>Radar de <a href="https://centaurux.es" target="_blank" rel="noopener" style="color:inherit">CentaurUX</a></span><button type="button" id="cookie-prefs">Preferencias de cookies</button></footer>
+</div>
+
+<div class="consent" id="consent" role="region" aria-label="Aviso de cookies" hidden>
+  <p>Usamos Microsoft Clarity, con cookies de analítica, para ver cómo se usa el radar y mejorarlo. Solo se activa si aceptas.</p>
+  <div class="row"><button type="button" id="c-no">Rechazar</button><button type="button" class="ok" id="c-yes">Aceptar</button></div>
 </div>
 
 <script>
@@ -372,6 +380,30 @@ renderIaFilters();
   db.doc("meta/estado").onSnapshot(s => { meta = s.exists ? s.data() : {}; renderStatus(); renderSummary(); renderList(); });
   db.collection("ofertas").onSnapshot(s => { rows = s.docs.map(d => ({id:d.id, ...d.data()})).filter(r => r.estado !== "descartada"); renderSummary(); renderEvo(); renderList(); },
     () => { $("status").replaceChildren(el("span", null, "No se han podido leer las ofertas.")); });
+})();
+
+// Clarity solo se carga si la persona acepta las cookies de analítica
+(() => {
+  const KEY = "radar-consent";
+  const get = () => { try { return localStorage.getItem(KEY); } catch (e) { return null; } };
+  const set = v => { try { localStorage.setItem(KEY, v); } catch (e) {} };
+  let loaded = false;
+  const load = () => {
+    if (loaded) return; loaded = true;
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "z0adlc3261");
+    window.clarity("consent");
+  };
+  const box = $("consent");
+  const choose = v => { set(v); box.hidden = true; if (v === "si") load(); else if (loaded && window.clarity) window.clarity("consent", false); };
+  $("c-yes").onclick = () => choose("si");
+  $("c-no").onclick = () => choose("no");
+  $("cookie-prefs").onclick = () => { box.hidden = false; $("c-yes").focus(); };
+  const v = get();
+  if (v === "si") load(); else if (v !== "no") box.hidden = false;
 })();
 </script>
 
