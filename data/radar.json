@@ -1,8 +1,8 @@
 {
  "meta": {
-  "nota": "Búsqueda extra del 18/10: 4 ofertas nuevas.",
+  "nota": "Búsqueda del 19/10: 1 oferta nueva (Planful).",
   "proxima": "Lunes y jueves",
-  "ultima_busqueda": "2026-10-18"
+  "ultima_busqueda": "2026-10-19"
  },
  "ofertas": [
   {
@@ -3396,6 +3396,30 @@
    "sector": "Seguros",
    "url": "https://www.glassdoor.es/job-listing/senior-ux-researcher-zurich-insurance-JV_IC2547194_KO0,20_KE21,37.htm?jl=1010212757273",
    "id": "zurich-senior"
+  },
+  {
+   "empresa": "Planful",
+   "puesto": "Senior UX Designer & Researcher",
+   "region": "Remoto internacional",
+   "ciudad": "Remoto (Canadá, EE. UU., México)",
+   "fecha": "2026-10-18",
+   "fecha_texto": "18/10/2026",
+   "nivel": "Senior (6-8 años)",
+   "salario_min": null,
+   "salario_max": null,
+   "moneda": null,
+   "salario_nota": "Publica OTE de 180.000-210.000 USD/año (puede incluir variable); no se indica el sueldo base",
+   "excluir_media": false,
+   "ia": "ambos",
+   "ia_uso": "requisito",
+   "cita_ia": "Proficiency in Claude and Figma for wireframing, prototyping, and working within a design system",
+   "nota": "Rol híbrido research + diseño que exige dominar Claude en el flujo de trabajo y valora investigar experiencias agénticas, con repositorio de research y medición de impacto: buen ejemplo de perfil emergente donde la IA entra como herramienta obligatoria.",
+   "url": "https://himalayas.app/companies/planful/jobs/senior-ux-designer-researcher",
+   "sector": "SaaS financiero (FP&A)",
+   "anadida": "2026-10-19",
+   "estado": "abierta",
+   "n": 138,
+   "id": "planful-senior-ux-designer-researcher"
   }
  ]
 }
