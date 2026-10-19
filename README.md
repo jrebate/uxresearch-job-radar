@@ -1,6 +1,6 @@
 # Radar UX Research
 
-Creado como parte del proryecto: https://centaurux.es/
+Creado como parte del proyecto: https://centaurux.es/
 
 Puedes revisar las ofertas en: https://jrebate.github.io/uxresearch-job-radar/
 
