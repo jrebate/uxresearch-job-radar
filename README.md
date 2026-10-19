@@ -1,5 +1,7 @@
 # Radar UX Research
 
+Creado como parte del proryecto: https://centaurux.es/
+
 Puedes revisar las ofertas en: https://jrebate.github.io/uxresearch-job-radar/
 
 Visor de ofertas de UX Research en empresas reconocidas, clasificadas según cómo aparece la IA: como herramienta para investigar, como objeto de investigación, las dos cosas o nada. Forma parte de la investigación de mercado de CentaurUX.
