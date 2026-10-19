@@ -5,4 +5,4 @@ Visor de ofertas de UX Research en empresas reconocidas, clasificadas según có
 - `index.html`: el visor.
 - `data/radar.json`: los datos (ofertas y estado de la última búsqueda). Se actualiza los lunes y jueves.
 
-Los sueldos son los que publica cada empresa, en sueldo base anual. Las ofertas marcadas como históricas (septiembre de 2025 a septiembre de 2026) se añadieron a posteriori y algunas tienen fecha aproximada.
+Los sueldos son los que publica cada empresa, en sueldo base anual. Las ofertas marcadas como históricas (septiembre de 2025 a septiembre de 2026) se añadieron a posteriori y algunas tienen fecha aproximada. Los incluímos para tener un histórico evolutivo.
