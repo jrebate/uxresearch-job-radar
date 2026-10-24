@@ -3541,6 +3541,30 @@
    "anadida": "2026-10-24",
    "estado": "abierta",
    "id": "openai-service-designer-support"
+  },
+  {
+   "n": 144,
+   "empresa": "Anthropic",
+   "puesto": "User Experience Researcher, Platform",
+   "region": "EE. UU.",
+   "ciudad": "San Francisco, Nueva York o Seattle",
+   "fecha": "2026-10-24",
+   "fecha_texto": "~24/10/2026 (marcada como nueva)",
+   "nivel": "Senior, 8+ años (preferido)",
+   "salario_min": 305000,
+   "salario_max": 385000,
+   "moneda": "USD",
+   "salario_nota": "Sueldo base anual publicado; además, equity.",
+   "excluir_media": false,
+   "ia": "ambos",
+   "ia_uso": "requisito",
+   "cita_ia": "Hands-on use of AI in your own research… you already run your work through it and use it to build your own analyses and tooling",
+   "nota": "Research de la plataforma de Claude (developers que construyen con Claude, admins y compradores), con métodos mixtos y research de precios y packaging. Pide usar Claude a fondo para investigar y valora construir con herramientas de código y agentes.",
+   "url": "https://job-boards.greenhouse.io/anthropic/jobs/5392007008",
+   "sector": "IA / producto",
+   "anadida": "2026-10-24",
+   "estado": "abierta",
+   "id": "anthropic-uxr-platform"
   }
  ]
 }
