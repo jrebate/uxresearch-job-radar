@@ -3516,6 +3516,31 @@
    "estado": "abierta",
    "n": 142,
    "id": "axos-bank-ux-researcher-i"
+  },
+  {
+   "n": 143,
+   "empresa": "OpenAI",
+   "puesto": "Service Designer, Support",
+   "tipo": "Diseño de servicios con research",
+   "region": "EE. UU.",
+   "ciudad": "San Francisco (híbrido, 3 días en oficina)",
+   "fecha": "2026-10-22",
+   "fecha_texto": "22/10/2026",
+   "nivel": "Senior, 8+ años",
+   "salario_min": null,
+   "salario_max": null,
+   "moneda": null,
+   "salario_nota": "No se ha podido ver el rango salarial publicado.",
+   "excluir_media": false,
+   "ia": "ninguna",
+   "ia_uso": null,
+   "cita_ia": "",
+   "nota": "Puesto de diseño de servicios con mucho research (investigar necesidades, mapear journeys de soporte y medir el impacto); en OpenAI, la IA no aparece en lo que se pide a la persona. Fuera de los recuentos de research.",
+   "url": "https://jobs.ashbyhq.com/openai/98cdff28-940d-48e8-b1d7-a0df38dd16d8",
+   "sector": "IA / producto",
+   "anadida": "2026-10-24",
+   "estado": "abierta",
+   "id": "openai-service-designer-support"
   }
  ]
 }
