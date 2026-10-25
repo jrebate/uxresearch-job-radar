@@ -3565,6 +3565,31 @@
    "anadida": "2026-10-24",
    "estado": "abierta",
    "id": "anthropic-uxr-platform"
+  },
+  {
+   "n": 145,
+   "empresa": "Smith+Nephew",
+   "puesto": "AI Experience Design Lead",
+   "tipo": "Diseño de experiencias de IA con research",
+   "region": "Polonia",
+   "ciudad": "Breslavia (híbrido)",
+   "fecha": "2026-10-25",
+   "fecha_texto": "~25/10/2026 (sin fecha en la oferta)",
+   "nivel": "Lead (sin años concretos)",
+   "salario_min": 159500,
+   "salario_max": 239250,
+   "moneda": "PLN",
+   "salario_nota": "Sueldo base bruto anual publicado. Fuera de la media por ser un puesto de liderazgo de diseño.",
+   "excluir_media": true,
+   "ia": "objeto",
+   "ia_uso": null,
+   "cita_ia": "Strong understanding of conversational UX, AI systems, human-in-the-loop design patterns, and AI ethics",
+   "nota": "Lidera el diseño de experiencias con IA en tecnología médica: discovery con usuarios, journey mapping y customer research, además de transparencia, explicabilidad y control humano. No pide usar IA en el propio trabajo. Fuera de los recuentos de research.",
+   "url": "https://smithnephew.wd5.myworkdayjobs.com/External/job/POL---Wroclaw/AI-Experience-Design-Lead_R92075",
+   "sector": "Salud / tecnología médica",
+   "anadida": "2026-10-25",
+   "estado": "abierta",
+   "id": "smithnephew-ai-experience-lead"
   }
  ]
 }
