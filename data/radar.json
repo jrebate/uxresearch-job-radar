@@ -4070,6 +4070,30 @@
    "anadida": "2026-10-29",
    "estado": "abierta",
    "id": "metoffice-ur-placement-2027"
+  },
+  {
+   "n": 166,
+   "empresa": "Novartis",
+   "puesto": "Senior User Researcher",
+   "region": "España",
+   "ciudad": "Barcelona",
+   "fecha": "2026-10-29",
+   "fecha_texto": "29/10/2026",
+   "nivel": "Senior, 8+ años",
+   "salario_min": 41900,
+   "salario_max": 77700,
+   "moneda": "EUR",
+   "salario_nota": "Además, posible bonus por objetivos.",
+   "excluir_media": false,
+   "ia": "flujo",
+   "ia_uso": "responsabilidad",
+   "cita_ia": "Identify and apply AI where it can drive measurable efficiency in research workflows without compromising research quality or rigour.",
+   "nota": "Usar la IA para ganar eficiencia sin perder calidad ni rigor, junto a proteger la integridad del research (ética, consentimiento y datos): justo el equilibrio que plantea CentaurUX, en una farmacéutica en España.",
+   "url": "https://www.novartis.com/careers/career-search/job/details/req-10090765-senior-user-researcher",
+   "sector": "Farmacéutica / IT interna",
+   "anadida": "2026-11-01",
+   "estado": "abierta",
+   "id": "novartis-senior-ur"
   }
  ]
 }
