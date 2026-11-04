@@ -4406,6 +4406,31 @@
    "anadida": "2026-11-04",
    "estado": "abierta",
    "id": "defra-senior-ur"
+  },
+  {
+   "n": 180,
+   "empresa": "Telefónica",
+   "puesto": "Senior Research & Service Designer, Complex Tech",
+   "tipo": "Research y diseño de servicios",
+   "region": "España",
+   "ciudad": "España (sin ciudad concreta)",
+   "fecha": "2026-11-04",
+   "fecha_texto": "04/11/2026",
+   "nivel": "Senior (sin años concretos)",
+   "salario_min": null,
+   "salario_max": null,
+   "moneda": null,
+   "salario_nota": "",
+   "excluir_media": false,
+   "ia": "ambos",
+   "ia_uso": "requisito",
+   "cita_ia": "Integrar herramientas de IA en el ciclo de diseño (análisis, síntesis, prototipado) con criterio propio y validación humana.",
+   "nota": "Pide una forma de trabajar AI-native pero con criterio propio y validación humana, investigando a perfiles muy técnicos (SOC, hackers éticos, expertos en IA) en servicios de ciberseguridad, cloud e IA: Human in the Loop dicho casi con esas palabras, en España.",
+   "url": "https://jobs.telefonica.com/job/Senior-Research-&-Service-Designer%2C-Complex-Tech/1454326533/",
+   "sector": "Telecomunicaciones / tecnología",
+   "anadida": "2026-11-04",
+   "estado": "abierta",
+   "id": "telefonica-research-service-designer"
   }
  ]
 }
