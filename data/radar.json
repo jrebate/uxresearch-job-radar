@@ -1,8 +1,8 @@
 {
  "meta": {
-  "nota": "Búsqueda del 4/11: 9 ofertas nuevas.",
+  "nota": "Búsqueda del 5/11: 2 ofertas nuevas.",
   "proxima": "Lunes y jueves",
-  "ultima_busqueda": "2026-11-04"
+  "ultima_busqueda": "2026-11-05"
  },
  "ofertas": [
   {
@@ -4431,6 +4431,54 @@
    "anadida": "2026-11-04",
    "estado": "abierta",
    "id": "telefonica-research-service-designer"
+  },
+  {
+   "n": 181,
+   "empresa": "JPMorganChase",
+   "puesto": "Experience Research Senior Associate",
+   "region": "EE. UU.",
+   "ciudad": "Plano (híbrido)",
+   "fecha": "2026-11-04",
+   "fecha_texto": "~04/11/2026",
+   "nivel": "Senior Associate, 3+ años",
+   "salario_min": null,
+   "salario_max": null,
+   "moneda": null,
+   "salario_nota": "",
+   "excluir_media": false,
+   "ia": "flujo",
+   "ia_uso": "deseable",
+   "cita_ia": "Experience using AI tools for research synthesis, analysis, content generation, or workflow acceleration",
+   "nota": "Banca regulada que valora usar IA para síntesis y análisis: buen caso para hablar de rigor y validación humana en un sector con cumplimiento normativo. Puede ser una republicación de anuncios anteriores.",
+   "url": "https://builtin.com/job/experience-research-senior-associate/11471936",
+   "sector": "Banca",
+   "anadida": "2026-11-05",
+   "estado": "abierta",
+   "id": "jpmc-exp-research-sr-assoc"
+  },
+  {
+   "n": 182,
+   "empresa": "Google",
+   "puesto": "UX Quantitative Researcher, Geo Makers",
+   "region": "EE. UU.",
+   "ciudad": "Mountain View, Nueva York o Seattle",
+   "fecha": "2026-11-04",
+   "fecha_texto": "~04/11/2026",
+   "nivel": "Inicial, 1+ año (se valora máster o doctorado)",
+   "salario_min": 109000,
+   "salario_max": 155000,
+   "moneda": "USD",
+   "salario_nota": "Además, bonus del 15 % y acciones.",
+   "excluir_media": false,
+   "ia": "objeto",
+   "ia_uso": null,
+   "cita_ia": "Experience analyzing behavioral logs, telemetry, and prompt data for artificial intelligence applications",
+   "nota": "Rol cuantitativo que investiga herramientas de IA agéntica para desarrolladores analizando logs y prompts: la IA como objeto de estudio, con métricas y telemetría rigurosas.",
+   "url": "https://www.google.com/about/careers/applications/jobs/results/96109534967145158-ux-quantitative-researcher-geo-makers",
+   "sector": "Tecnología / geoespacial",
+   "anadida": "2026-11-05",
+   "estado": "abierta",
+   "id": "google-quant-uxr-geo-makers"
   }
  ]
 }
