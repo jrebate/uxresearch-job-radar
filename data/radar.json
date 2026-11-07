@@ -4479,6 +4479,30 @@
    "anadida": "2026-11-05",
    "estado": "abierta",
    "id": "google-quant-uxr-geo-makers"
+  },
+  {
+   "n": 183,
+   "empresa": "Vinted",
+   "puesto": "Senior User Researcher, User Research",
+   "region": "Lituania",
+   "ciudad": "Vilna o Kaunas (híbrido)",
+   "fecha": null,
+   "fecha_texto": "~07/11/2026 (sin fecha en la oferta)",
+   "nivel": "Senior (sin años concretos)",
+   "salario_min": 39504,
+   "salario_max": 69000,
+   "moneda": "EUR",
+   "salario_nota": "Publicado como bruto mensual (3.292–5.750 €), aquí ×12. Contrato temporal de dos años.",
+   "excluir_media": false,
+   "ia": "ninguna",
+   "ia_uso": null,
+   "cita_ia": "",
+   "nota": "Research generativo y evaluativo en compra, venta, seguridad y confianza de un marketplace, consolidando el conocimiento del equipo y elevando la calidad del research. La IA no aparece.",
+   "url": "https://careers.vinted.com/jobs/j/4996026101?gh_jid=4996026101",
+   "sector": "Marketplace de segunda mano",
+   "anadida": "2026-11-07",
+   "estado": "abierta",
+   "id": "vinted-senior-ur-2026-11"
   }
  ]
 }
