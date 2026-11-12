@@ -1,8 +1,8 @@
 {
  "meta": {
-  "nota": "Búsqueda del 9/11: 4 ofertas nuevas.",
+  "nota": "Búsqueda del 12/11: 2 ofertas nuevas.",
   "proxima": "Lunes y jueves",
-  "ultima_busqueda": "2026-11-09"
+  "ultima_busqueda": "2026-11-12"
  },
  "ofertas": [
   {
@@ -4599,6 +4599,54 @@
    "anadida": "2026-11-09",
    "estado": "abierta",
    "id": "dept-senior-ux-research-bud"
+  },
+  {
+   "empresa": "Fever",
+   "puesto": "Senior User Researcher",
+   "region": "España",
+   "ciudad": "Madrid",
+   "fecha": "2026-08-12",
+   "fecha_texto": "12/08/2026",
+   "nivel": "Senior, ~10 años (se consideran 5+)",
+   "salario_min": null,
+   "salario_max": null,
+   "moneda": null,
+   "salario_nota": "Base más bonus, sin cifras",
+   "ia": "flujo",
+   "ia_uso": "deseable",
+   "cita_ia": "You use AI tools where they help, and you own the accuracy of every output.",
+   "nota": "Ejemplo claro de rendición de cuentas: la IA se usa como apoyo, pero la persona investigadora responde de la exactitud de cada resultado, y además se le pide mejorar los procesos de research ops.",
+   "url": "https://jobs.accel.com/companies/fever/jobs/89670289-senior-user-researcher",
+   "sector": "Ocio y entretenimiento (plataforma de eventos)",
+   "excluir_media": false,
+   "n": 188,
+   "anadida": "2026-11-12",
+   "estado": "abierta",
+   "id": "fever-senior-ur"
+  },
+  {
+   "empresa": "Wolters Kluwer",
+   "puesto": "Senior User Researcher with Dutch",
+   "region": "Países Bajos",
+   "ciudad": "Alphen aan den Rijn",
+   "fecha": null,
+   "fecha_texto": "~07/11/2026",
+   "nivel": "Senior, 8+ años",
+   "salario_min": null,
+   "salario_max": null,
+   "moneda": null,
+   "salario_nota": "",
+   "ia": "ninguna",
+   "ia_uso": null,
+   "cita_ia": null,
+   "nota": "Puesto clásico de investigación con métodos tradicionales (contextual inquiry, encuestas, tests de usabilidad) que no menciona la IA; sirve como referencia de base frente a las ofertas que sí la piden.",
+   "url": "https://builtin.com/job/senior-user-researcher-dutch/3697841",
+   "sector": "Software profesional / información legal y fiscal",
+   "excluir_media": false,
+   "n": 189,
+   "anadida": "2026-11-12",
+   "estado": "abierta",
+   "id": "wolterskluwer-senior-ur-dutch"
   }
  ]
 }
