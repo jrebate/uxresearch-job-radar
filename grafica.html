@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La IA en las ofertas de UX Research · Radar CentaurUX</title>
+<meta name="description" content="Gráfica del Radar UX Research de CentaurUX: cómo aparece la IA en las ofertas de UX Research, mes a mes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Versión para incrustar: título, leyenda, gráfica interactiva y franja de marca CentaurUX */
+:root{
+  --bg:#ffffff; --surface:#ffffff; --ink:#18202b; --muted:#5b6676; --line:#dde1e7;
+  --ia-ninguna:#8a94a3; --ia-objeto:#b7791f; --ia-flujo:#1b8a7a;
+  --band:#111111; --lime:#D9EC39;
+  --f-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#18202a; --surface:#18202a; --ink:#e6eaf0; --muted:#9aa5b4; --line:#2a3441;
+  --ia-ninguna:#7d8796; --ia-objeto:#e0a64a; --ia-flujo:#4cc3b0; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#18202a; --surface:#18202a; --ink:#e6eaf0; --muted:#9aa5b4; --line:#2a3441;
+  --ia-ninguna:#7d8796; --ia-objeto:#e0a64a; --ia-flujo:#4cc3b0; color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:14px;line-height:1.45}
+.card{display:flex;flex-direction:column;min-height:100vh}
+.top{padding:18px 20px 0}
+.kicker{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+h1{font-family:var(--f-display);font-weight:700;font-size:clamp(19px,3.6vw,24px);line-height:1.15;margin:4px 0 2px;letter-spacing:-0.01em;text-wrap:balance}
+.sub{margin:0;color:var(--muted);font-size:13px}
+.evo-legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12.5px;color:var(--muted);margin-top:10px}
+.evo-legend span{display:inline-flex;align-items:center;gap:6px}
+.evo-legend i{width:16px;height:0;border-top:2.5px solid;display:inline-block}
+.chartwrap{padding:0 20px;flex:1}
+.evochart{position:relative;margin-top:8px}
+.evochart svg{display:block;width:100%;height:auto;overflow:visible}
+.evochart svg:focus-visible{outline:2px solid var(--ia-flujo);outline-offset:4px;border-radius:4px}
+.evochart .grid{stroke:var(--line);stroke-width:1}
+.evochart .axis{fill:var(--muted);font-family:var(--f-mono);font-size:11px}
+.evochart .lbl{font-size:12px;fill:var(--ink);font-family:var(--f-body)}
+.evochart .cross{stroke:var(--muted);stroke-width:1;stroke-dasharray:3 3}
+.evochart .tip{position:absolute;top:0;pointer-events:none;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:12.5px;line-height:1.45;box-shadow:0 6px 20px rgba(0,0,0,.12);min-width:190px;z-index:2}
+.evochart .tip[hidden]{display:none}
+.evochart .tip b{font-weight:600}
+.evochart .tip .r{display:flex;align-items:center;gap:6px;color:var(--muted)}
+.evochart .tip .r i{width:10px;height:3px;border-radius:2px;flex:none}
+.evochart .tip .r span:last-child{margin-left:auto;color:var(--ink);font-family:var(--f-mono)}
+.note{margin:8px 0 12px;color:var(--muted);font-size:12px}
+.brand{background:var(--band);color:#fff;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px 16px;padding:10px 20px}
+.brand a{color:inherit;text-decoration:none}
+.logo{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-display);font-weight:700;font-size:16px}
+.logo svg{width:24px;height:24px}
+.acts{display:flex;align-items:center;flex-wrap:wrap;gap:4px 14px;font-size:12.5px;color:#c5ccd6}
+.acts a,.acts button{color:#c5ccd6;text-decoration:underline;text-underline-offset:2px}
+.acts button{font:inherit;background:none;border:0;padding:0;cursor:pointer}
+.acts .web{color:var(--lime);font-family:var(--f-mono);text-decoration:none}
+.acts a:hover,.acts button:hover{color:#fff}
+.brand a:focus-visible,.brand button:focus-visible{outline:2px solid var(--lime);outline-offset:2px;border-radius:2px}
+</style>
+</head>
+<body>
+<main class="card">
+  <div class="top">
+    <span class="kicker">Radar UX Research</span>
+    <h1>Cómo aparece la IA en las ofertas de UX Research</h1>
+    <p class="sub" id="sub">Porcentaje de ofertas en cada ventana de tres meses</p>
+    <div class="evo-legend" aria-hidden="true"><span><i style="border-color:var(--ia-flujo)"></i>Piden investigar con IA</span><span><i style="border-color:var(--ia-objeto);border-top-style:dashed"></i>Investigan sobre IA</span><span><i style="border-color:var(--ia-ninguna);border-top-style:dotted"></i>No aparece la IA</span></div>
+  </div>
+  <div class="chartwrap">
+    <div class="evochart" id="evochart"></div>
+    <p class="note" id="note">Media de tres meses para suavizar los meses con pocas ofertas. «Las dos cosas» cuenta en las dos primeras líneas.</p>
+  </div>
+  <footer class="brand">
+    <a class="logo" href="https://centaurux.es" target="_blank" rel="noopener"><svg viewBox="0 0 840 840" aria-hidden="true"><path fill="#fff" fill-rule="evenodd" d="M424.25 101.35L712.05 101.35A143.90 143.90 0 0 1 663.49 209.13A206.80 206.80 0 0 1 680.35 558.08L680.35 740.85L489.11 595.97A239.90 239.90 0 1 1 411.81 242.86A208.70 208.70 0 0 1 466.23 202.93A143.90 143.90 0 0 1 424.25 101.35ZM411.81 242.86A239.90 239.90 0 0 1 496.39 320.73L416.71 539.88A208.70 208.70 0 0 1 411.81 242.86Z"/></svg>CentaurUX</a>
+    <span class="acts">
+      <a href="https://jrebate.github.io/uxresearch-job-radar/" target="_blank" rel="noopener">Ver el radar completo</a>
+      <button type="button" id="dl">Descargar PNG</button>
+      <a class="web" href="https://centaurux.es" target="_blank" rel="noopener">centaurux.es</a>
+    </span>
+  </footer>
+</main>
+<script src="grafica.js"></script>
+<script>
+const tema = new URLSearchParams(location.search).get("tema");
+if (tema === "claro") document.documentElement.dataset.theme = "light";
+if (tema === "oscuro") document.documentElement.dataset.theme = "dark";
+let rows = [], meta = {};
+const box = document.getElementById("evochart");
+const draw = () => RadarChart.render(box, rows);
+(async () => {
+  try {
+    const d = await (await fetch("data/radar.json", {cache:"no-store"})).json();
+    meta = d.meta || {}; rows = (d.ofertas || []).filter(r => r.estado !== "descartada");
+    const P = RadarChart.points(rows);
+    if (P) document.getElementById("sub").textContent = "Porcentaje de ofertas en cada ventana de tres meses · " + RadarChart.subtitulo(P);
+    if (meta.ultima_busqueda) document.getElementById("note").textContent += " Datos a " + meta.ultima_busqueda.split("-").reverse().join("/") + ".";
+    draw();
+  } catch (e) { box.textContent = "No se han podido cargar los datos."; }
+})();
+let rsz; addEventListener("resize", () => { clearTimeout(rsz); rsz = setTimeout(draw, 150); });
+document.getElementById("dl").addEventListener("click", async e => {
+  const b = e.currentTarget, t = b.textContent; b.textContent = "Preparando…";
+  try { await RadarChart.descargar(rows, meta); } catch (err) { b.textContent = "No se ha podido generar"; setTimeout(() => b.textContent = t, 2500); return; }
+  b.textContent = t;
+});
+</script>
+</body>
+</html>
