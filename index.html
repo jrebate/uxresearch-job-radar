@@ -112,8 +112,15 @@ td.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:n
 .evo-legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--muted);margin-top:12px}
 .evo-legend span{display:inline-flex;align-items:center;gap:6px}
 .evo-legend i{width:14px;height:3px;border-radius:2px;display:inline-block}
-.share{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-.share a.chip{text-decoration:none}
+.share{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line)}
+.share-lbl{font-size:12.5px;color:var(--muted)}
+.share-btns{display:inline-flex;flex-wrap:wrap;gap:2px;padding:3px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.sbtn{font:inherit;font-size:13px;font-weight:500;display:inline-flex;align-items:center;gap:6px;padding:6px 11px;border:0;border-radius:7px;background:transparent;color:var(--muted);cursor:pointer;text-decoration:none;line-height:1.2;transition:background .15s,color .15s}
+.sbtn svg{width:16px;height:16px;flex:none}
+.sbtn:hover{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.sbtn[aria-expanded="true"]{background:var(--surface);color:var(--accent);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.sbtn:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.embedrow .sbtn{border:1px solid var(--line);background:var(--surface);color:var(--ink)}
 .embedbox{margin-top:12px;display:grid;gap:8px}
 .embedbox[hidden]{display:none}
 .embedbox .label{text-transform:none;letter-spacing:0;font-size:12.5px}
@@ -160,14 +167,17 @@ td.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:n
     <div class="evo-legend" aria-hidden="true"><span><i style="background:var(--ia-flujo)"></i>Piden investigar con IA</span><span><i style="background:var(--ia-objeto)"></i>Investigan sobre IA</span><span><i style="background:var(--ia-ninguna)"></i>No aparece la IA</span></div>
     <div class="evochart" id="evochart"></div>
     <p class="note">Porcentaje de ofertas de los tres últimos meses en cada punto, para suavizar los meses con pocas ofertas. "Las dos cosas" cuenta en las dos primeras líneas. Todavía hay pocos datos: tómalo como tendencia, no como cifra exacta.</p>
-    <div class="share" aria-label="Compartir la gráfica">
-      <button type="button" class="chip" id="evo-png">Descargar PNG</button>
-      <button type="button" class="chip" id="evo-embed" aria-expanded="false" aria-controls="embedbox">Incrustar en tu web</button>
-      <a class="chip" href="https://jrebate.github.io/uxresearch-job-radar/grafica.html" target="_blank" rel="noopener">Ver la gráfica sola</a>
+    <div class="share" role="group" aria-label="Compartir la gráfica">
+      <span class="share-lbl">Comparte la gráfica</span>
+      <div class="share-btns">
+        <button type="button" class="sbtn" id="evo-png"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="m7 10 5 5 5-5"/><path d="M5 20h14"/></svg><span class="t">PNG</span></button>
+        <button type="button" class="sbtn" id="evo-embed" aria-expanded="false" aria-controls="embedbox"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m8 8-4 4 4 4"/><path d="m16 8 4 4-4 4"/><path d="m13.5 6-3 12"/></svg><span class="t">Incrustar</span></button>
+        <a class="sbtn" href="https://jrebate.github.io/uxresearch-job-radar/grafica.html" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 5h5v5"/><path d="M19 5 11 13"/><path d="M18 14v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h4"/></svg><span class="t">Abrir sola</span></a>
+      </div>
     </div>
     <div class="embedbox" id="embedbox" hidden>
       <label class="label" for="embedcode">Copia este código y pégalo en tu web. La gráfica se actualiza sola con cada búsqueda y lleva el logo y el enlace de CentaurUX.</label>
-      <div class="embedrow"><textarea id="embedcode" readonly rows="3"></textarea><button type="button" class="chip" id="embedcopy">Copiar</button></div>
+      <div class="embedrow"><textarea id="embedcode" readonly rows="3"></textarea><button type="button" class="sbtn" id="embedcopy"><span class="t">Copiar</span></button></div>
       <p class="note">Puedes forzar el tema añadiendo <code>?tema=claro</code> u <code>?tema=oscuro</code> a la dirección. Licencia CC BY 4.0: úsala citando a CentaurUX.</p>
     </div>
     <div class="seg" id="evomode" style="margin-top:16px"></div>
@@ -406,10 +416,10 @@ $("evo-embed").addEventListener("click", e => { const box = $("embedbox"); box.h
 $("embedcopy").addEventListener("click", async e => {
   const b = e.currentTarget;
   try { await navigator.clipboard.writeText(EMBED); } catch (err) { $("embedcode").select(); try { document.execCommand("copy"); } catch (e2) {} }
-  b.textContent = "Copiado"; setTimeout(() => b.textContent = "Copiar", 2000);
+  const tt = b.querySelector(".t"); tt.textContent = "Copiado"; setTimeout(() => tt.textContent = "Copiar", 2000);
 });
 $("evo-png").addEventListener("click", async e => {
-  const b = e.currentTarget, t = b.textContent; b.textContent = "Preparando…";
+  const b = e.currentTarget.querySelector(".t"), t = b.textContent; b.textContent = "Preparando…";
   try { await RadarChart.descargar(rows, meta); b.textContent = t; } catch (err) { b.textContent = "No se ha podido generar"; setTimeout(() => b.textContent = t, 2500); }
 });
 renderEvoMode();
